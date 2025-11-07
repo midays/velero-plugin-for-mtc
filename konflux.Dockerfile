@@ -12,3 +12,10 @@ COPY --from=builder /workspace/_output/$BIN /plugins/
 COPY LICENSE /licenses/
 USER 65534:65534
 ENTRYPOINT ["/bin/bash", "-c", "cp /plugins/* /target/."]
+
+LABEL \
+        "io.k8s.description"="Migration Toolkit for Containers Velero Plugin For MTC" \
+        "io.k8s.display-name"="Migration Toolkit for Containers" \
+        "io.openshift.tags"="migration" \
+        "summary"="Migration Toolkit for Containers Velero Plugin For MTC" \
+        "io.openshift.maintainer.project"="MIG"
