@@ -22,6 +22,7 @@ COPY --chown=1001 . $APP_ROOT/src/github.com/migtools/velero-plugin-for-mtc
 RUN go build -installsuffix "static" -tags "$BUILDTAGS" -o _output/$BIN ./velero-plugins
 
 FROM registry.access.redhat.com/ubi8-minimal
+RUN microdnf upgrade -y python3-urllib3 && microdnf clean all
 RUN mkdir /plugins
 COPY --from=builder /opt/app-root/src/github.com/migtools/velero-plugin-for-mtc/_output/$BIN /plugins/
 USER 65534:65534
